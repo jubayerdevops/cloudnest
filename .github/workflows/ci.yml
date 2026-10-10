@@ -1,0 +1,30 @@
+name: CloudNest CI
+
+on:
+  push:
+    branches: ["**"]          # every push, on every branch
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest    # GitHub-hosted runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Show runner info
+        run: |
+          python --version
+
+      - name: Build (compile check)
+        run: python -m py_compile app.py
+
+      - name: Test
+        run: python -m unittest discover -v
