@@ -14,22 +14,22 @@ def divide(x, y):
         raise ValueError("Cannot divide by zero.")
     return x / y
 
+def pwr(x, y):
+    return x ** y
+
 def calculator():
     print("Select operation:")
     print("1. Add")
     print("2. Subtract")
     print("3. Multiply")
     print("4. Divide")
+    print("5. Power")
 
-    choice = input("Enter choice (1/2/3/4): ")
+    choice = input("Enter choice (1/2/3/4/5): ")
 
-    if choice in ['1', '2', '3', '4']:
-        try:
-            num1 = float(input("Enter first number: "))
-            num2 = float(input("Enter second number: "))
-        except ValueError:
-            print("Error: please enter numbers only.")
-            return
+    if choice in ['1', '2', '3', '4', '5']:
+        num1 = float(input("Enter first number: "))
+        num2 = float(input("Enter second number: "))
 
         if choice == '1':
             print(f"{num1} + {num2} = {add(num1, num2)}")
@@ -43,6 +43,8 @@ def calculator():
                 print(f"{num1} / {num2} = {result}")
             except ValueError as e:
                 print(e)
+        elif choice == '5':
+            print(f"{num1} ^ {num2} = {pwr(num1, num2)}")
     else:
         print("Invalid input")
 
