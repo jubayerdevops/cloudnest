@@ -17,6 +17,11 @@ def divide(x, y):
 def pwr(x, y):
     return x ** y
 
+def mod(x, y):
+    if y == 0:
+        raise ValueError("Cannot perform modulus by zero.")
+    return x % y
+
 def calculator():
     print("Select operation:")
     print("1. Add")
@@ -24,10 +29,11 @@ def calculator():
     print("3. Multiply")
     print("4. Divide")
     print("5. Power")
+    print("6. Modulus")
 
-    choice = input("Enter choice (1/2/3/4/5): ")
+    choice = input("Enter choice (1/2/3/4/5/6): ")
 
-    if choice in ['1', '2', '3', '4', '5']:
+    if choice in ['1', '2', '3', '4', '5', '6']:
         num1 = float(input("Enter first number: "))
         num2 = float(input("Enter second number: "))
 
@@ -45,6 +51,12 @@ def calculator():
                 print(e)
         elif choice == '5':
             print(f"{num1} ^ {num2} = {pwr(num1, num2)}")
+        elif choice == '6':
+            try:
+                result = mod(num1, num2)
+                print(f"{num1} % {num2} = {result}")
+            except ValueError as e:
+                print(e)
     else:
         print("Invalid input")
 
